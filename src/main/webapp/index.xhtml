@@ -1,0 +1,71 @@
+<!-- Nombre completo: Anderson Sanchez -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Registro de Aspirante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</h:head>
+<h:body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Formulario de Registro de Aspirante</h2>
+        <h:form id="formAspirante">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <h:outputLabel for="identificacion" value="Identificación:" class="form-label" />
+                    <h:inputText id="identificacion" value="#{aspiranteBean.aspirante.identificacion}" 
+                                 required="true" requiredMessage="La identificación es requerida" class="form-control" />
+                    <h:message for="identificacion" class="text-danger" />
+                </div>
+                <div class="col-md-6">
+                    <h:outputLabel for="nombre" value="Nombres:" class="form-label" />
+                    <h:inputText id="nombre" value="#{aspiranteBean.aspirante.nombre}" 
+                                 required="true" requiredMessage="El nombre es requerido" class="form-control" />
+                    <h:message for="nombre" class="text-danger" />
+                </div>
+                <div class="col-md-6">
+                    <h:outputLabel for="apellido" value="Apellidos:" class="form-label" />
+                    <h:inputText id="apellido" value="#{aspiranteBean.aspirante.apellido}" 
+                                 required="true" requiredMessage="El apellido es requerido" class="form-control" />
+                    <h:message for="apellido" class="text-danger" />
+                </div>
+                <div class="col-md-6">
+                    <h:outputLabel for="correo" value="Correo Electrónico:" class="form-label" />
+                    <h:inputText id="correo" value="#{aspiranteBean.aspirante.correo}" 
+                                 required="true" requiredMessage="El correo es requerido" class="form-control">
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </h:inputText>
+                    <h:message for="correo" class="text-danger" />
+                </div>
+                <div class="col-md-6">
+                    <h:outputLabel for="telefono" value="Teléfono:" class="form-label" />
+                    <h:inputText id="telefono" value="#{aspiranteBean.aspirante.telefono}" 
+                                 required="true" requiredMessage="El teléfono es requerido" class="form-control" />
+                    <h:message for="telefono" class="text-danger" />
+                </div>
+                <div class="col-md-6">
+                    <h:outputLabel for="programa" value="Programa Académico:" class="form-label" />
+                    <h:selectOneMenu id="programa" value="#{aspiranteBean.idProgramaSeleccionado}" required="true" requiredMessage="El programa es requerido" class="form-select">
+                        <f:selectItem itemLabel="-- Seleccione un Programa --" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{aspiranteBean.listaProgramas}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.id}" />
+                    </h:selectOneMenu>
+                    <h:message for="programa" class="text-danger" />
+                </div>
+                <div class="col-12 text-center mt-4">
+                    <h:commandButton value="Registrar" action="#{aspiranteBean.registrar}" class="btn btn-primary px-5 me-2" />
+                    <a href="cdt.xhtml" class="btn btn-outline-success px-5">Simular CDT</a>
+                </div>
+            </div>
+        </h:form>
+
+        <footer class="mt-5 py-3 border-top text-center">
+            <p><strong>Nombre completo:</strong> Anderson Sanchez</p>
+            <p><strong>Asignatura:</strong> Programación Web - <strong>Grupo:</strong> 01</p>
+            <p><strong>Universidad:</strong> Universidad Distrital Francisco José de Caldas</p>
+            <p><strong>Año:</strong> 2026</p>
+        </footer>
+    </div>
+</h:body>
+</html>

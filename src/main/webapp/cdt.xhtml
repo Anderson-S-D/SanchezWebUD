@@ -1,0 +1,93 @@
+<!-- Nombre completo: Anderson Sanchez -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Simulador CDT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</h:head>
+<h:body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Simulador de CDT</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h:form id="formCdt" class="card p-4 shadow-sm">
+                    <div class="mb-3">
+                        <h:outputLabel for="inversion" value="Monto de Inversión ($):" class="form-label" />
+                        <h:inputText id="inversion" value="#{cdt.inversion}" required="true" class="form-control">
+                            <f:convertNumber minFractionDigits="0" />
+                        </h:inputText>
+                    </div>
+
+                    <div class="mb-3">
+                        <h:outputLabel for="interes" value="Interés (% E.A.):" class="form-label" />
+                        <h:inputText id="interes" value="#{cdt.interes}" required="true" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <h:outputLabel for="plazo" value="Plazo (días):" class="form-label" />
+                        <h:inputText id="plazo" value="#{cdt.plazo}" required="true" class="form-control" />
+                    </div>
+
+                    <div class="text-center">
+                        <h:commandButton value="Calcular Ganancia" action="#{cdt.calcular}" class="btn btn-success px-4">
+                            <f:ajax execute="@form" render="resultados" />
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+
+        <h:panelGroup id="resultados" layout="block" class="mt-4">
+            <h:panelGroup rendered="#{cdt.ganancia > 0}" layout="block" class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card border-success shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            Resultados de la Simulación
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Ganancia Bruta:
+                                    <h:outputText value="#{cdt.ganancia}" class="fw-bold text-success">
+                                        <f:convertNumber type="currency" currencySymbol="$" />
+                                    </h:outputText>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Impuesto (GMF 4%):
+                                    <h:outputText value="#{cdt.impuesto}" class="text-danger">
+                                        <f:convertNumber type="currency" currencySymbol="$" />
+                                    </h:outputText>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-top">
+                                    <strong>Ganancia Neta:</strong>
+                                    <h:outputText value="#{cdt.gananciaNeta}" class="fw-bold">
+                                        <f:convertNumber type="currency" currencySymbol="$" />
+                                    </h:outputText>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+                                    <strong>Valor Final al Vencimiento:</strong>
+                                    <h:outputText value="#{cdt.valorFinal}" class="h5 mb-0 fw-bold">
+                                        <f:convertNumber type="currency" currencySymbol="$" />
+                                    </h:outputText>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <footer class="mt-5 py-3 border-top text-center">
+            <div class="mb-3">
+                <a href="index.xhtml" class="btn btn-outline-primary btn-sm">Regresar al Registro</a>
+            </div>
+            <p><strong>Nombre completo:</strong> Anderson Sanchez</p>
+            <p><strong>Asignatura:</strong> Programación Web - <strong>Año:</strong> 2026</p>
+        </footer>
+    </div>
+</h:body>
+</html>
