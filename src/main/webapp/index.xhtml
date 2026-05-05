@@ -6,61 +6,66 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <title>Registro de Aspirante</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <h:outputStylesheet name="css/styles.css" />
 </h:head>
 <h:body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Formulario de Registro de Aspirante</h2>
+    <div class="container">
+        <h2>Formulario de Registro de Aspirante</h2>
         <h:form id="formAspirante">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <h:outputLabel for="identificacion" value="Identificación:" class="form-label" />
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="identificacion" value="Identificación:" />
                     <h:inputText id="identificacion" value="#{aspiranteBean.aspirante.identificacion}" 
-                                 required="true" requiredMessage="La identificación es requerida" class="form-control" />
-                    <h:message for="identificacion" class="text-danger" />
+                                 required="true" requiredMessage="La identificación es requerida" />
+                    <h:message for="identificacion" class="error-message" />
                 </div>
-                <div class="col-md-6">
-                    <h:outputLabel for="nombre" value="Nombres:" class="form-label" />
+                <div class="col">
+                    <h:outputLabel for="nombre" value="Nombres:" />
                     <h:inputText id="nombre" value="#{aspiranteBean.aspirante.nombre}" 
-                                 required="true" requiredMessage="El nombre es requerido" class="form-control" />
-                    <h:message for="nombre" class="text-danger" />
+                                 required="true" requiredMessage="El nombre es requerido" />
+                    <h:message for="nombre" class="error-message" />
                 </div>
-                <div class="col-md-6">
-                    <h:outputLabel for="apellido" value="Apellidos:" class="form-label" />
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="apellido" value="Apellidos:" />
                     <h:inputText id="apellido" value="#{aspiranteBean.aspirante.apellido}" 
-                                 required="true" requiredMessage="El apellido es requerido" class="form-control" />
-                    <h:message for="apellido" class="text-danger" />
+                                 required="true" requiredMessage="El apellido es requerido" />
+                    <h:message for="apellido" class="error-message" />
                 </div>
-                <div class="col-md-6">
-                    <h:outputLabel for="correo" value="Correo Electrónico:" class="form-label" />
+                <div class="col">
+                    <h:outputLabel for="correo" value="Correo Electrónico:" />
                     <h:inputText id="correo" value="#{aspiranteBean.aspirante.correo}" 
-                                 required="true" requiredMessage="El correo es requerido" class="form-control">
+                                 required="true" requiredMessage="El correo es requerido">
                         <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                     </h:inputText>
-                    <h:message for="correo" class="text-danger" />
+                    <h:message for="correo" class="error-message" />
                 </div>
-                <div class="col-md-6">
-                    <h:outputLabel for="telefono" value="Teléfono:" class="form-label" />
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h:outputLabel for="telefono" value="Teléfono:" />
                     <h:inputText id="telefono" value="#{aspiranteBean.aspirante.telefono}" 
-                                 required="true" requiredMessage="El teléfono es requerido" class="form-control" />
-                    <h:message for="telefono" class="text-danger" />
+                                 required="true" requiredMessage="El teléfono es requerido" />
+                    <h:message for="telefono" class="error-message" />
                 </div>
-                <div class="col-md-6">
-                    <h:outputLabel for="programa" value="Programa Académico:" class="form-label" />
-                    <h:selectOneMenu id="programa" value="#{aspiranteBean.idProgramaSeleccionado}" required="true" requiredMessage="El programa es requerido" class="form-select">
+                <div class="col">
+                    <h:outputLabel for="programa" value="Programa Académico:" />
+                    <h:selectOneMenu id="programa" value="#{aspiranteBean.idProgramaSeleccionado}" required="true" requiredMessage="El programa es requerido">
                         <f:selectItem itemLabel="-- Seleccione un Programa --" itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{aspiranteBean.listaProgramas}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.id}" />
                     </h:selectOneMenu>
-                    <h:message for="programa" class="text-danger" />
+                    <h:message for="programa" class="error-message" />
                 </div>
-                <div class="col-12 text-center mt-4">
-                    <h:commandButton value="Registrar" action="#{aspiranteBean.registrar}" class="btn btn-primary px-5 me-2" />
-                    <a href="cdt.xhtml" class="btn btn-outline-success px-5">Simular CDT</a>
-                </div>
+            </div>
+            <div class="button-container">
+                <h:commandButton value="Registrar" action="#{aspiranteBean.registrar}" class="btn btn-primary" />
+                <h:outputLink value="listado.xhtml" class="btn btn-outline">Ver Listado</h:outputLink>
+                <h:outputLink value="cdt.xhtml" class="btn btn-outline">Simular CDT</h:outputLink>
             </div>
         </h:form>
 
-        <footer class="mt-5 py-3 border-top text-center">
+        <footer>
             <p><strong>Nombre completo:</strong> Anderson Sanchez</p>
             <p><strong>Asignatura:</strong> Programación Web - <strong>Grupo:</strong> 01</p>
             <p><strong>Universidad:</strong> Universidad Distrital Francisco José de Caldas</p>
